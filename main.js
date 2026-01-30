@@ -117,7 +117,12 @@ function renderTable() {
                 } catch (e) { }
             }
             if (rawUrl.startsWith('http')) {
-                imageUrl = rawUrl;
+                // Filter out known dead domains to prevent console errors
+                if (rawUrl.includes('placeimg.com')) {
+                    imageUrl = 'https://placehold.co/100?text=No+Image';
+                } else {
+                    imageUrl = rawUrl;
+                }
             }
         }
 
